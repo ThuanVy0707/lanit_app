@@ -17,7 +17,9 @@ class ClientUserFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'is_owner' => fake()->boolean(30),
         ];
     }
 }

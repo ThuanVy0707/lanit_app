@@ -17,7 +17,7 @@ class ClientController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $clients = Client::with(['users', 'customFields'])->paginate(15);
-        
+
         return ClientResource::collection($clients);
     }
 

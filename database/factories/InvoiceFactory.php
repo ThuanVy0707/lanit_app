@@ -16,8 +16,23 @@ class InvoiceFactory extends Factory
      */
     public function definition(): array
     {
+        $date = fake()->dateTimeBetween('-1 year', 'now');
+        $duedate = (clone $date)->modify('+'.fake()->numberBetween(7, 30).' days');
+        $subtotal = fake()->randomFloat(2, 10, 500);
+        $tax = $subtotal * 0.1;
+        $total = $subtotal + $tax;
+
         return [
-            //
+            'invoice_number' => 'INV-'.fake()->unique()->numerify('######'),
+            'date' => $date,
+            'duedate' => $duedate,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
+            'total' => $total,
+            'credit' => 0,
+            'status' => fake()->randomElement(['Paid', 'Unpaid', 'Cancelled']),
+            'payment_method' => fake()->randomElement(['stripe', 'paypal', 'bank_transfer', null]),
+            'notes' => fake()->optional()->sentence(),
         ];
     }
 }

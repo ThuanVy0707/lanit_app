@@ -125,13 +125,13 @@ class Client extends Model
 
     public function getIsOptedInToMarketingEmailsAttribute(): bool
     {
-        return $this->marketing_emails_opt_in;
+        return (bool) $this->marketing_emails_opt_in;
     }
 
     public function getStats(): array
     {
         $invoices = $this->invoices;
-        
+
         return [
             'numdueinvoices' => $invoices->where('status', 'Unpaid')->count(),
             'dueinvoicesbalance' => $invoices->where('status', 'Unpaid')->sum('total'),

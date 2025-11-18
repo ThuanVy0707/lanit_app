@@ -17,7 +17,8 @@ class ClientCustomFieldFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'field_name' => fake()->words(2, true),
+            'value' => fake()->sentence(),
         ];
     }
 }
