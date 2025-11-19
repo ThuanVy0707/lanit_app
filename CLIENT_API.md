@@ -1,4 +1,4 @@
-# Client Management API - WHMCS Style
+# Client Management System - WHMCS Style
 
 Hệ thống quản lý khách hàng tương tự WHMCS với đầy đủ chức năng quản lý thông tin client, invoices, products, domains, quotes, tickets và custom fields.
 
@@ -13,9 +13,58 @@ Hệ thống quản lý khách hàng tương tự WHMCS với đầy đủ chứ
 - **tickets** - Support tickets
 - **client_custom_fields** - Trường tùy chỉnh
 
-## API Endpoints
+## Web Interface
 
-### 1. List Clients
+### Truy cập Client Management
+
+Sau khi đăng nhập, bạn có thể truy cập quản lý clients qua:
+- Menu navigation: **Clients**
+- URL: `/clients`
+
+### Các chức năng Web Interface
+
+1. **Danh sách Clients** (`/clients`)
+   - Hiển thị tất cả clients với pagination
+   - Tìm kiếm và lọc clients
+   - Xem trạng thái client (Active, Inactive, Closed)
+   - Thao tác: View, Edit, Delete
+
+2. **Tạo Client mới** (`/clients/create`)
+   - Form nhập đầy đủ thông tin client
+   - Validation real-time
+   - Các trường: Personal Info, Address, Contact, Options
+
+3. **Chi tiết Client** (`/clients/{id}`)
+   - Thông tin đầy đủ về client
+   - Thống kê: Invoices, Products, Domains, Tickets
+   - Danh sách invoices gần đây
+   - Danh sách products/services
+   - Danh sách domains
+   - Credit balance
+
+4. **Chỉnh sửa Client** (`/clients/{id}/edit`)
+   - Form cập nhật thông tin client
+   - Tất cả các trường có thể chỉnh sửa
+   - Validation và error handling
+
+### Required Fields (Tạo Client)
+- **First Name** - Tên
+- **Last Name** - Họ
+- **Email** - Email (unique)
+
+### Optional Fields
+- Company Name, Phone Number
+- Address (Address 1, Address 2, City, State, Postcode, Country Code)
+- Status (Active, Inactive, Closed)
+- Credit Balance
+- Marketing Email Opt-in
+- Email Verified
+- Tax Exempt
+- Notes
+
+## API Endpoints (Vẫn khả dụng)
+
+API endpoints vẫn hoạt động song song với web interface tại `/api/v1/clients`
 ```
 GET /api/v1/clients
 ```

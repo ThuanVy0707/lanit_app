@@ -4,73 +4,99 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use App\Http\Resources\ClientResource;
 use App\Models\Client;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): View
     {
-        $clients = Client::with(['users', 'customFields'])->paginate(15);
+        $query = Client::with(['owner']);
 
-        return ClientResource::collection($clients);
+        // Search filter
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('firstname', 'like', "%{$search}%")
+                    ->orWhere('lastname', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('companyname', 'like', "%{$search}%");
+            });
+        }
+
+        // Status filter
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $clients = $query->latest()->paginate(15)->withQueryString();
+
+        return view('clients.index', compact('clients'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): View
+    {
+        return view('clients.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreClientRequest $request): ClientResource
+    public function store(StoreClientRequest $request): RedirectResponse
     {
         $client = Client::create($request->validated());
 
-        $client->load(['users', 'customFields']);
-
-        return new ClientResource($client);
+        return redirect()->route('clients.show', $client)
+            ->with('success', 'Client created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Client $client): JsonResponse
+    public function show(Client $client): View
     {
         $client->load(['users', 'customFields', 'invoices', 'products', 'domains', 'quotes', 'tickets']);
 
         $stats = $client->getStats();
 
-        return response()->json([
-            'result' => 'success',
-            'client' => (new ClientResource($client))->resolve(),
-            'stats' => $stats,
-        ]);
+        return view('clients.show', compact('client', 'stats'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Client $client): View
+    {
+        return view('clients.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClientRequest $request, Client $client): ClientResource
+    public function update(UpdateClientRequest $request, Client $client): RedirectResponse
     {
         $client->update($request->validated());
 
-        $client->load(['users', 'customFields']);
-
-        return new ClientResource($client);
+        return redirect()->route('clients.show', $client)
+            ->with('success', 'Client updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client): JsonResponse
+    public function destroy(Client $client): RedirectResponse
     {
         $client->delete();
 
-        return response()->json([
-            'result' => 'success',
-            'message' => 'Client deleted successfully',
-        ]);
+        return redirect()->route('clients.index')
+            ->with('success', 'Client deleted successfully.');
     }
 }
