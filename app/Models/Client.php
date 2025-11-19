@@ -51,6 +51,7 @@ class Client extends Model
         'defaultgateway',
         'groupid',
         'status',
+        'source',
         'credit',
         'taxexempt',
         'latefeeoveride',

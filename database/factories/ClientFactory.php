@@ -43,6 +43,7 @@ class ClientFactory extends Factory
             'defaultgateway' => fake()->randomElement(['stripe', 'paypal', '']),
             'groupid' => 0,
             'status' => fake()->randomElement(['Active', 'Inactive']),
+            'source' => fake()->randomElement(['Website', 'Referral', 'Social Media', 'Advertisement', 'Partner', 'Direct', 'Other', null]),
             'credit' => fake()->randomFloat(2, 0, 1000),
             'taxexempt' => fake()->boolean(20),
             'latefeeoveride' => fake()->boolean(10),

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +26,14 @@ Route::middleware('auth')->group(function () {
 
     // Product routes
     Route::resource('products', ProductController::class);
+
+    // Invoice routes
+    Route::resource('invoices', InvoiceController::class);
+
+    // Ticket routes
+    Route::resource('tickets', TicketController::class);
+    Route::post('/tickets/{ticket}/reply', [TicketController::class, 'reply'])->name('tickets.reply');
+    Route::post('/tickets/{ticket}/merge', [TicketController::class, 'merge'])->name('tickets.merge');
 
     // Report routes
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

@@ -83,6 +83,25 @@
                                 @enderror
                             </div>
 
+                            <!-- Source -->
+                            <div>
+                                <label for="source" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Source</label>
+                                <select name="source" id="source"
+                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="">Select source...</option>
+                                    <option value="Website" {{ old('source', $client->source) === 'Website' ? 'selected' : '' }}>Website</option>
+                                    <option value="Referral" {{ old('source', $client->source) === 'Referral' ? 'selected' : '' }}>Referral</option>
+                                    <option value="Social Media" {{ old('source', $client->source) === 'Social Media' ? 'selected' : '' }}>Social Media</option>
+                                    <option value="Advertisement" {{ old('source', $client->source) === 'Advertisement' ? 'selected' : '' }}>Advertisement</option>
+                                    <option value="Partner" {{ old('source', $client->source) === 'Partner' ? 'selected' : '' }}>Partner</option>
+                                    <option value="Direct" {{ old('source', $client->source) === 'Direct' ? 'selected' : '' }}>Direct</option>
+                                    <option value="Other" {{ old('source', $client->source) === 'Other' ? 'selected' : '' }}>Other</option>
+                                </select>
+                                @error('source')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             <!-- Credit -->
                             <div>
                                 <label for="credit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Credit Balance</label>
