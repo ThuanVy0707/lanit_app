@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-indigo-800 dark:text-gray-200 leading-tight">
                 {{ __('Reports & Analytics') }}
             </h2>
             <form method="GET" action="{{ route('reports.index') }}" class="flex items-center space-x-2">
                 <label for="month" class="text-sm text-gray-700 dark:text-gray-300">Month:</label>
                 <input type="month" name="month" id="month" value="{{ $currentMonth }}"
                     class="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-md hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Filter
                 </button>
             </form>
@@ -20,7 +20,7 @@
 
             <!-- Overview Statistics -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Clients</p>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Clients</p>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Products</p>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Products</p>
@@ -91,19 +91,19 @@
 
             <!-- Revenue Statistics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Revenue</p>
                     <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">${{ number_format($revenueStats['total_revenue'], 2) }}</p>
                 </div>
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Invoices</p>
                     <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $revenueStats['total_invoices'] }}</p>
                 </div>
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Paid Invoices</p>
                     <p class="text-2xl font-bold text-green-600 dark:text-green-400">{{ $revenueStats['paid_invoices'] }}</p>
                 </div>
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Unpaid Invoices</p>
                     <p class="text-2xl font-bold text-red-600 dark:text-red-400">{{ $revenueStats['unpaid_invoices'] }}</p>
                 </div>
@@ -112,7 +112,7 @@
             <!-- Charts Row -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Product Status Distribution -->
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Product Status Distribution</h3>
                     <div class="space-y-3">
                         @foreach($productStatusStats as $status => $count)
@@ -122,7 +122,7 @@
                                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $count }}</span>
                                 </div>
                                 <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full" style="width: {{ ($count / max($stats['total_products'], 1)) * 100 }}%"></div>
+                                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 h-2 rounded-full" style="width: {{ ($count / max($stats['total_products'], 1)) * 100 }}%"></div>
                                 </div>
                             </div>
                         @endforeach
@@ -130,7 +130,7 @@
                 </div>
 
                 <!-- Product Type Distribution -->
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Product Type Distribution</h3>
                     <div class="space-y-3">
                         @foreach($productTypeStats as $type => $count)
@@ -149,7 +149,7 @@
             </div>
 
             <!-- Monthly Trend -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">6-Month Trend</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -176,7 +176,7 @@
             </div>
 
             <!-- New Clients This Month -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">New Clients This Month</h3>
                     <div class="overflow-x-auto">
@@ -222,7 +222,7 @@
             </div>
 
             <!-- New Products/Services This Month -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">New Products/Services This Month</h3>
                     <div class="overflow-x-auto">
@@ -270,7 +270,7 @@
             </div>
 
             <!-- Services Due for Renewal This Month -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Services Due for Renewal This Month</h3>
                     <div class="overflow-x-auto">
@@ -311,7 +311,7 @@
             </div>
 
             <!-- Cancelled/Terminated Services This Month -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Cancelled/Terminated Services This Month</h3>
                     <div class="overflow-x-auto">
@@ -356,3 +356,4 @@
         </div>
     </div>
 </x-app-layout>
+
