@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('tickets', TicketController::class);
     Route::post('/tickets/{ticket}/reply', [TicketController::class, 'reply'])->name('tickets.reply');
     Route::post('/tickets/{ticket}/merge', [TicketController::class, 'merge'])->name('tickets.merge');
+
+    // Order routes
+    Route::resource('orders', OrderController::class);
 
     // Report routes
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

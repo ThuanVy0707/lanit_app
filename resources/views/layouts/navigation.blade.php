@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.*')">
                         {{ __('Tickets') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
                         {{ __('Reports') }}
                     </x-nav-link>
@@ -115,6 +118,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.*')">
                 {{ __('Tickets') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                {{ __('Orders') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
                 {{ __('Reports') }}
