@@ -138,7 +138,7 @@
                                             <span class="capitalize">{{ $product->billing_cycle }}</span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 font-medium">
-                                            ${{ number_format($product->amount, 2) }}
+                                            {{ formatCurrencyVND($product->amount) }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full

@@ -48,7 +48,7 @@
                                     <option value="">No invoice</option>
                                     @foreach($invoices as $invoice)
                                         <option value="{{ $invoice->id }}" {{ old('invoice_id') == $invoice->id ? 'selected' : '' }}>
-                                            #{{ $invoice->invoice_number }} - ${{ number_format($invoice->total, 2) }}
+                                            #{{ $invoice->invoice_num }} - {{ formatCurrencyVND($invoice->total) }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -60,8 +60,8 @@
                             <!-- Amount -->
                             <div>
                                 <label for="amount" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount <span class="text-red-600">*</span></label>
-                                <input type="number" name="amount" id="amount" value="{{ old('amount') }}" step="0.01" min="0" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <input type="text" name="amount" id="amount" value="{{ old('amount') }}" data-currency="vnd" required
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 @error('amount')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                                 @enderror
@@ -217,8 +217,8 @@
                                                 </div>
                                                 <div>
                                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount <span class="text-red-600">*</span></label>
-                                                    <input type="number" name="line_items[{{ $index }}][amount]" value="{{ $item['amount'] ?? '' }}" step="0.01" min="0" required
-                                                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                                <input type="text" name="line_items[{{ $index }}][amount]" value="{{ $item['amount'] ?? '' }}" data-currency="vnd" required
+                                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                                 </div>
                                             </div>
                                             <div class="mt-3">
@@ -292,7 +292,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount <span class="text-red-600">*</span></label>
-                        <input type="number" name="line_items[${itemIndex}][amount]" step="0.01" min="0" required
+                        <input type="text" name="line_items[${itemIndex}][amount]" data-currency="vnd" step="0.01" min="0" required
                             class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                 </div>

@@ -63,7 +63,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 font-medium">${{ number_format($product->amount, 2) }}</p>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 font-medium">{{ formatCurrencyVND($product->amount) }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Next Due Date</label>

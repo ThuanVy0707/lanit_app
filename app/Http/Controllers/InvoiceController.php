@@ -64,7 +64,23 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request): RedirectResponse
     {
-        $invoice = Invoice::create($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amounts
+        if (isset($validated['subtotal'])) {
+            $validated['subtotal'] = parseCurrencyVND($validated['subtotal']);
+        }
+        if (isset($validated['tax'])) {
+            $validated['tax'] = parseCurrencyVND($validated['tax']);
+        }
+        if (isset($validated['credit'])) {
+            $validated['credit'] = parseCurrencyVND($validated['credit']);
+        }
+        if (isset($validated['total'])) {
+            $validated['total'] = parseCurrencyVND($validated['total']);
+        }
+
+        $invoice = Invoice::create($validated);
 
         return redirect()->route('invoices.show', $invoice)
             ->with('success', 'Invoice created successfully.');
@@ -95,7 +111,23 @@ class InvoiceController extends Controller
      */
     public function update(UpdateInvoiceRequest $request, Invoice $invoice): RedirectResponse
     {
-        $invoice->update($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amounts
+        if (isset($validated['subtotal'])) {
+            $validated['subtotal'] = parseCurrencyVND($validated['subtotal']);
+        }
+        if (isset($validated['tax'])) {
+            $validated['tax'] = parseCurrencyVND($validated['tax']);
+        }
+        if (isset($validated['credit'])) {
+            $validated['credit'] = parseCurrencyVND($validated['credit']);
+        }
+        if (isset($validated['total'])) {
+            $validated['total'] = parseCurrencyVND($validated['total']);
+        }
+
+        $invoice->update($validated);
 
         return redirect()->route('invoices.show', $invoice)
             ->with('success', 'Invoice updated successfully.');

@@ -52,7 +52,14 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request): RedirectResponse
     {
-        $client = Client::create($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted credit
+        if (isset($validated['credit'])) {
+            $validated['credit'] = parseCurrencyVND($validated['credit']);
+        }
+
+        $client = Client::create($validated);
 
         return redirect()->route('clients.show', $client)
             ->with('success', 'Client created successfully.');
@@ -83,7 +90,14 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client): RedirectResponse
     {
-        $client->update($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted credit
+        if (isset($validated['credit'])) {
+            $validated['credit'] = parseCurrencyVND($validated['credit']);
+        }
+
+        $client->update($validated);
 
         return redirect()->route('clients.show', $client)
             ->with('success', 'Client updated successfully.');

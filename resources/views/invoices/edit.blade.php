@@ -81,9 +81,8 @@
                                     Subtotal <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400">$</span>
-                                    <input type="number" id="subtotal" name="subtotal" value="{{ old('subtotal', $invoice->subtotal) }}" step="0.01" min="0" required
-                                        class="w-full pl-7 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('subtotal') border-red-500 @enderror">
+                                    <input type="text" id="subtotal" name="subtotal" value="{{ old('subtotal', $invoice->subtotal) }}" data-currency="vnd" required
+                                        class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('subtotal') border-red-500 @enderror">
                                 </div>
                                 @error('subtotal')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -95,9 +94,8 @@
                                     Tax <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400">$</span>
-                                    <input type="number" id="tax" name="tax" value="{{ old('tax', $invoice->tax) }}" step="0.01" min="0" required
-                                        class="w-full pl-7 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('tax') border-red-500 @enderror">
+                                    <input type="text" id="tax" name="tax" value="{{ old('tax', $invoice->tax) }}" data-currency="vnd" required
+                                        class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('tax') border-red-500 @enderror">
                                 </div>
                                 @error('tax')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -109,9 +107,8 @@
                                     Credit
                                 </label>
                                 <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400">$</span>
-                                    <input type="number" id="credit" name="credit" value="{{ old('credit', $invoice->credit) }}" step="0.01" min="0"
-                                        class="w-full pl-7 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('credit') border-red-500 @enderror">
+                                    <input type="text" id="credit" name="credit" value="{{ old('credit', $invoice->credit) }}" data-currency="vnd"
+                                        class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('credit') border-red-500 @enderror">
                                 </div>
                                 @error('credit')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -125,9 +122,8 @@
                                 Total <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400">$</span>
-                                <input type="number" id="total" name="total" value="{{ old('total', $invoice->total) }}" step="0.01" min="0" required
-                                    class="w-full pl-7 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('total') border-red-500 @enderror">
+                                <input type="text" id="total" name="total" value="{{ old('total', $invoice->total) }}" data-currency="vnd" required
+                                    class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('total') border-red-500 @enderror">
                             </div>
                             @error('total')
                                 <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -202,12 +198,22 @@
             const creditInput = document.getElementById('credit');
             const totalInput = document.getElementById('total');
 
+            // Function to parse VND formatted string to number
+            function parseVND(value) {
+                return parseFloat(value.replace(/\./g, '')) || 0;
+            }
+
+            // Function to format number to VND format
+            function formatToVND(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
             function calculateTotal() {
-                const subtotal = parseFloat(subtotalInput.value) || 0;
-                const tax = parseFloat(taxInput.value) || 0;
-                const credit = parseFloat(creditInput.value) || 0;
+                const subtotal = parseVND(subtotalInput.value);
+                const tax = parseVND(taxInput.value);
+                const credit = parseVND(creditInput.value);
                 const total = subtotal + tax - credit;
-                totalInput.value = total.toFixed(2);
+                totalInput.value = formatToVND(total);
             }
 
             subtotalInput.addEventListener('input', calculateTotal);

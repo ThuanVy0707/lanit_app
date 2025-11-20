@@ -69,7 +69,14 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request): RedirectResponse
     {
-        $product = Product::create($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amount
+        if (isset($validated['amount'])) {
+            $validated['amount'] = parseCurrencyVND($validated['amount']);
+        }
+
+        $product = Product::create($validated);
 
         return redirect()->route('products.show', $product)
             ->with('success', 'Product created successfully.');
@@ -100,7 +107,14 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        $product->update($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amount
+        if (isset($validated['amount'])) {
+            $validated['amount'] = parseCurrencyVND($validated['amount']);
+        }
+
+        $product->update($validated);
 
         return redirect()->route('products.show', $product)
             ->with('success', 'Product updated successfully.');

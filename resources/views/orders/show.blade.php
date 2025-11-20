@@ -36,7 +36,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 font-bold text-lg">${{ number_format($order->amount, 2) }}</p>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 font-bold text-lg">{{ formatCurrencyVND($order->amount) }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Invoice</label>
@@ -190,7 +190,7 @@
                                             {{ $item->billing_cycle ?? 'N/A' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                            ${{ number_format($item->amount, 2) }}
+                                            {{ formatCurrencyVND($item->amount) }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
@@ -213,7 +213,7 @@
                                             Total:
                                         </td>
                                         <td class="px-6 py-3 text-sm font-bold text-gray-900 dark:text-gray-100">
-                                            ${{ number_format($order->lineItems->sum('amount'), 2) }}
+                                            {{ formatCurrencyVND($order->lineItems->sum('amount')) }}
                                         </td>
                                         <td></td>
                                     </tr>

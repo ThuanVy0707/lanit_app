@@ -49,7 +49,7 @@ class ClientResource extends JsonResource
             'defaultgateway' => $this->defaultgateway ?? '',
             'groupid' => $this->groupid,
             'status' => $this->status,
-            'credit' => number_format($this->credit, 2, '.', ''),
+            'credit' => formatCurrencyVNDNoSymbol($this->credit),
             'taxexempt' => $this->taxexempt,
             'latefeeoveride' => $this->latefeeoveride,
             'overideduenotices' => $this->overideduenotices,

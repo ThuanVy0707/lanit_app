@@ -101,8 +101,8 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 dark:text-gray-400 sm:text-sm">$</span>
                                     </div>
-                                    <input type="number" step="0.01" min="0" name="amount" id="amount" value="{{ old('amount') }}" required
-                                        class="mt-1 block w-full pl-7 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <input type="text" step="0.01" min="0" name="amount" id="amount" value="{{ old('amount') }}" data-currency="vnd" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 </div>
                                 @error('amount')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>

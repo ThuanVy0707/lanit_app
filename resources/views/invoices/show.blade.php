@@ -92,21 +92,21 @@
                             <dl class="space-y-2">
                                 <div class="flex justify-between">
                                     <dt class="text-sm text-gray-600 dark:text-gray-400">Subtotal:</dt>
-                                    <dd class="text-sm font-medium">${{ number_format($invoice->subtotal, 2) }}</dd>
+                                    <dd class="text-sm font-medium">{{ formatCurrencyVND($invoice->subtotal) }}</dd>
                                 </div>
                                 <div class="flex justify-between">
                                     <dt class="text-sm text-gray-600 dark:text-gray-400">Tax:</dt>
-                                    <dd class="text-sm font-medium">${{ number_format($invoice->tax, 2) }}</dd>
+                                    <dd class="text-sm font-medium">{{ formatCurrencyVND($invoice->tax) }}</dd>
                                 </div>
                                 @if($invoice->credit > 0)
                                     <div class="flex justify-between">
                                         <dt class="text-sm text-gray-600 dark:text-gray-400">Credit:</dt>
-                                        <dd class="text-sm font-medium text-green-600 dark:text-green-400">-${{ number_format($invoice->credit, 2) }}</dd>
+                                        <dd class="text-sm font-medium text-green-600 dark:text-green-400">-{{ formatCurrencyVND($invoice->credit) }}</dd>
                                     </div>
                                 @endif
                                 <div class="flex justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
                                     <dt class="text-base font-semibold">Total:</dt>
-                                    <dd class="text-base font-bold text-blue-600 dark:text-blue-400">${{ number_format($invoice->total, 2) }}</dd>
+                                    <dd class="text-base font-bold text-blue-600 dark:text-blue-400">{{ formatCurrencyVND($invoice->total) }}</dd>
                                 </div>
                             </dl>
                         </div>

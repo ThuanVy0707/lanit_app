@@ -60,11 +60,26 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amounts
+        if (isset($validated['amount'])) {
+            $validated['amount'] = parseCurrencyVND($validated['amount']);
+        }
+
+        if (isset($validated['line_items'])) {
+            foreach ($validated['line_items'] as &$item) {
+                if (isset($item['amount'])) {
+                    $item['amount'] = parseCurrencyVND($item['amount']);
+                }
+            }
+        }
+
+        $order = Order::create($validated);
 
         // Create line items if provided
         if ($request->has('line_items')) {
-            foreach ($request->line_items as $item) {
+            foreach ($validated['line_items'] as $item) {
                 $order->lineItems()->create($item);
             }
         }
@@ -90,13 +105,28 @@ class OrderController extends Controller
 
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        $order->update($request->validated());
+        $validated = $request->validated();
+
+        // Parse VND formatted amounts
+        if (isset($validated['amount'])) {
+            $validated['amount'] = parseCurrencyVND($validated['amount']);
+        }
+
+        if (isset($validated['line_items'])) {
+            foreach ($validated['line_items'] as &$item) {
+                if (isset($item['amount'])) {
+                    $item['amount'] = parseCurrencyVND($item['amount']);
+                }
+            }
+        }
+
+        $order->update($validated);
 
         // Update line items if provided
         if ($request->has('line_items')) {
             // Delete existing line items and create new ones
             $order->lineItems()->delete();
-            foreach ($request->line_items as $item) {
+            foreach ($validated['line_items'] as $item) {
                 $order->lineItems()->create($item);
             }
         }
