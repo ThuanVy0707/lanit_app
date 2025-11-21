@@ -6,10 +6,10 @@
             </h2>
             <div class="flex space-x-2">
                 <a href="{{ route('tickets.edit', $ticket) }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    Edit
+                    {{ __('messages.msg_edit') }}
                 </a>
                 <a href="{{ route('tickets.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 dark:bg-gray-700 border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:bg-gray-400 dark:hover:bg-gray-600 focus:bg-gray-400 dark:focus:bg-gray-600 active:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    Back
+                    {{ __('messages.msg_back') }}
                 </a>
             </div>
         </div>
@@ -90,7 +90,7 @@
                     @if($ticket->replies->count() > 0)
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h4 class="text-lg font-semibold mb-4">Replies ({{ $ticket->replies->count() }})</h4>
+                                <h4 class="text-lg font-semibold mb-4">{{ __('messages.msg_replies') }} ({{ $ticket->replies->count() }})</h4>
                                 <div class="space-y-4">
                                     @foreach($ticket->replies as $reply)
                                         <div class="border-l-4 {{ $reply->is_staff_reply ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' }} p-4 rounded">
@@ -135,19 +135,19 @@
                     @if($ticket->status !== 'Closed' && $ticket->status !== 'Merged')
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h4 class="text-lg font-semibold mb-4">Add Reply</h4>
+                                <h4 class="text-lg font-semibold mb-4">{{ __('messages.msg_add_reply') }}</h4>
                                 <form method="POST" action="{{ route('tickets.reply', $ticket) }}">
                                     @csrf
                                     <div class="mb-4">
                                         <textarea name="message" rows="4" required
                                             class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                            placeholder="Type your reply..."></textarea>
+                                            placeholder="{{ __('messages.msg_type_your_reply') }}"></textarea>
                                         @error('message')
                                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                        Send Reply
+                                        {{ __('messages.msg_send_reply') }}
                                     </button>
                                 </form>
                             </div>
@@ -160,7 +160,7 @@
                     <!-- Client Info -->
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">Client Information</h4>
+                            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">{{ __('messages.msg_client_information') }}</h4>
                             <div class="space-y-2">
                                 <p class="font-semibold">{{ $ticket->client->fullname }}</p>
                                 <p class="text-sm text-gray-600 dark:text-gray-400">{{ $ticket->client->email }}</p>
@@ -168,7 +168,7 @@
                                     <p class="text-sm text-gray-600 dark:text-gray-400">{{ $ticket->client->phonenumber }}</p>
                                 @endif
                                 <a href="{{ route('clients.show', $ticket->client) }}" class="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400">
-                                    View Client Profile →
+                                    {{ __('messages.msg_view_client_profile') }}
                                 </a>
                             </div>
                         </div>
@@ -177,14 +177,14 @@
                     <!-- Ticket Info -->
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">Ticket Information</h4>
+                            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">{{ __('messages.msg_ticket_information') }}</h4>
                             <dl class="space-y-2">
                                 <div>
                                     <dt class="text-xs text-gray-500 dark:text-gray-400">Created</dt>
                                     <dd class="text-sm">{{ $ticket->created_at->format('M d, Y h:i A') }}</dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs text-gray-500 dark:text-gray-400">Last Updated</dt>
+                                    <dt class="text-xs text-gray-500 dark:text-gray-400">{{ __('messages.msg_last_updated') }}</dt>
                                     <dd class="text-sm">{{ $ticket->updated_at->format('M d, Y h:i A') }}</dd>
                                 </div>
                                 <div>
@@ -199,11 +199,11 @@
                     @if($ticket->status !== 'Merged' && $ticket->status !== 'Closed')
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">Merge Ticket</h4>
-                                <form method="POST" action="{{ route('tickets.merge', $ticket) }}" onsubmit="return confirm('Are you sure you want to merge this ticket?');">
+                                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">{{ __('messages.msg_merge_ticket') }}</h4>
+                                <form method="POST" action="{{ route('tickets.merge', $ticket) }}" onsubmit="return confirm('{{ __('messages.msg_confirm_merge_ticket') }}');">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="merge_to_ticket_id" class="block text-xs text-gray-500 dark:text-gray-400 mb-1">Merge into ticket ID</label>
+                                        <label for="merge_to_ticket_id" class="block text-xs text-gray-500 dark:text-gray-400 mb-1">{{ __('messages.msg_merge_into_ticket_id') }}</label>
                                         <input type="number" name="merge_to_ticket_id" id="merge_to_ticket_id" required
                                             class="w-full text-sm rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                         @error('merge_to_ticket_id')
@@ -211,7 +211,7 @@
                                         @enderror
                                     </div>
                                     <button type="submit" class="w-full inline-flex justify-center items-center px-3 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                        Merge Ticket
+                                        {{ __('messages.msg_merge_ticket') }}
                                     </button>
                                 </form>
                             </div>
@@ -222,7 +222,7 @@
                     @if($ticket->mergedTickets->count() > 0)
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">Merged Tickets</h4>
+                                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">{{ __('messages.msg_merged_tickets') }}</h4>
                                 <ul class="space-y-2">
                                     @foreach($ticket->mergedTickets as $mergedTicket)
                                         <li>
@@ -240,7 +240,7 @@
                     @if($ticket->merged_to_ticket_id)
                         <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
                             <p class="text-sm text-amber-800 dark:text-amber-200">
-                                This ticket has been merged into
+                                {{ __('messages.msg_ticket_merged_into') }}
                                 <a href="{{ route('tickets.show', $ticket->mergedTo) }}" class="font-semibold underline">
                                     #{{ $ticket->mergedTo->ticket_number }}
                                 </a>

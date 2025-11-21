@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Create Invoice') }}
+                {{ __('messages.msg_create_invoice') }}
             </h2>
             <a href="{{ route('invoices.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 dark:bg-gray-700 border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:bg-gray-400 dark:hover:bg-gray-600 focus:bg-gray-400 dark:focus:bg-gray-600 active:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                {{ __('Back') }}
+                {{ __('messages.msg_back') }}
             </a>
         </div>
     </x-slot>
@@ -20,11 +20,11 @@
                         <!-- Client -->
                         <div class="mb-4">
                             <label for="client_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Client <span class="text-red-500">*</span>
+                                {{ __('messages.msg_client') }} <span class="text-red-500">*</span>
                             </label>
                             <select id="client_id" name="client_id" required
                                 class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('client_id') border-red-500 @enderror">
-                                <option value="">Select a client...</option>
+                                <option value="">{{ __('messages.msg_select_client') }}</option>
                                 @foreach($clients as $client)
                                     <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
                                         {{ $client->fullname }} - {{ $client->email }}
@@ -39,7 +39,7 @@
                         <!-- Invoice Number -->
                         <div class="mb-4">
                             <label for="invoice_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Invoice Number <span class="text-red-500">*</span>
+                                {{ __('messages.msg_invoice_number_label') }} <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="invoice_number" name="invoice_number" value="{{ old('invoice_number', $invoiceNumber) }}" required
                                 class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('invoice_number') border-red-500 @enderror">
@@ -52,7 +52,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
                                 <label for="date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Invoice Date <span class="text-red-500">*</span>
+                                    {{ __('messages.msg_invoice_date_label') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="date" id="date" name="date" value="{{ old('date', now()->format('Y-m-d')) }}" required
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('date') border-red-500 @enderror">
@@ -63,7 +63,7 @@
 
                             <div>
                                 <label for="duedate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Due Date <span class="text-red-500">*</span>
+                                    {{ __('messages.msg_due_date') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="date" id="duedate" name="duedate" value="{{ old('duedate', now()->addDays(30)->format('Y-m-d')) }}" required
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('duedate') border-red-500 @enderror">
@@ -77,7 +77,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
                                 <label for="subtotal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Subtotal <span class="text-red-500">*</span>
+                                    {{ __('messages.msg_subtotal') }} <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
                                     <input type="text" id="subtotal" name="subtotal" value="{{ old('subtotal', '0') }}" data-currency="vnd" required
@@ -90,7 +90,7 @@
 
                             <div>
                                 <label for="tax" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Tax <span class="text-red-500">*</span>
+                                    {{ __('messages.msg_tax') }} <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
                                     <input type="text" id="tax" name="tax" value="{{ old('tax', '0') }}" data-currency="vnd" required
@@ -103,7 +103,7 @@
 
                             <div>
                                 <label for="credit" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Credit
+                                    {{ __('messages.msg_credit') }}
                                 </label>
                                 <div class="relative">
                                     <input type="text" id="credit" name="credit" value="{{ old('credit', '0') }}" data-currency="vnd"
@@ -118,7 +118,7 @@
                         <!-- Total (calculated) -->
                         <div class="mb-4">
                             <label for="total" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Total <span class="text-red-500">*</span>
+                                {{ __('messages.msg_total') }} <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <input type="text" id="total" name="total" value="{{ old('total', '0') }}" data-currency="vnd" required
@@ -127,22 +127,22 @@
                             @error('total')
                                 <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
-                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Total = Subtotal + Tax - Credit</p>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ __('messages.msg_total_calculation') }}</p>
                         </div>
 
                         <!-- Status and Payment Method -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Status <span class="text-red-500">*</span>
+                                    {{ __('messages.msg_status') }} <span class="text-red-500">*</span>
                                 </label>
                                 <select id="status" name="status" required
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('status') border-red-500 @enderror">
-                                    <option value="Draft" {{ old('status') === 'Draft' ? 'selected' : '' }}>Draft</option>
-                                    <option value="Unpaid" {{ old('status', 'Unpaid') === 'Unpaid' ? 'selected' : '' }}>Unpaid</option>
-                                    <option value="Paid" {{ old('status') === 'Paid' ? 'selected' : '' }}>Paid</option>
-                                    <option value="Cancelled" {{ old('status') === 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
-                                    <option value="Refunded" {{ old('status') === 'Refunded' ? 'selected' : '' }}>Refunded</option>
+                                    <option value="Draft" {{ old('status') === 'Draft' ? 'selected' : '' }}>{{ __('messages.msg_draft') }}</option>
+                                    <option value="Unpaid" {{ old('status', 'Unpaid') === 'Unpaid' ? 'selected' : '' }}>{{ __('messages.msg_unpaid') }}</option>
+                                    <option value="Paid" {{ old('status') === 'Paid' ? 'selected' : '' }}>{{ __('messages.msg_paid') }}</option>
+                                    <option value="Cancelled" {{ old('status') === 'Cancelled' ? 'selected' : '' }}>{{ __('messages.msg_cancelled') }}</option>
+                                    <option value="Refunded" {{ old('status') === 'Refunded' ? 'selected' : '' }}>{{ __('messages.msg_refunded') }}</option>
                                 </select>
                                 @error('status')
                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -151,7 +151,7 @@
 
                             <div>
                                 <label for="payment_method" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Payment Method
+                                    {{ __('messages.msg_payment_method_label') }}
                                 </label>
                                 <input type="text" id="payment_method" name="payment_method" value="{{ old('payment_method') }}"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('payment_method') border-red-500 @enderror"
@@ -165,7 +165,7 @@
                         <!-- Notes -->
                         <div class="mb-4">
                             <label for="notes" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Notes
+                                {{ __('messages.msg_notes') }}
                             </label>
                             <textarea id="notes" name="notes" rows="4"
                                 class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('notes') border-red-500 @enderror">{{ old('notes') }}</textarea>
@@ -177,10 +177,10 @@
                         <!-- Submit Button -->
                         <div class="flex justify-end space-x-2">
                             <a href="{{ route('invoices.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 dark:bg-gray-700 border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:bg-gray-400 dark:hover:bg-gray-600 focus:bg-gray-400 dark:focus:bg-gray-600 active:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                                Cancel
+                                {{ __('messages.msg_cancel') }}
                             </a>
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                                Create Invoice
+                                {{ __('messages.msg_create_invoice') }}
                             </button>
                         </div>
                     </form>

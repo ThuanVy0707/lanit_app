@@ -13,25 +13,25 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('messages.msg_dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
-                        {{ __('Clients') }}
+                        {{ __('messages.msg_clients') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                        {{ __('Products') }}
+                        {{ __('messages.msg_products') }}
                     </x-nav-link>
                     <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
-                        {{ __('Invoices') }}
+                        {{ __('messages.msg_invoices') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.*')">
-                        {{ __('Tickets') }}
+                        {{ __('messages.msg_tickets') }}
                     </x-nav-link>
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
-                        {{ __('Orders') }}
+                        {{ __('messages.msg_orders') }}
                     </x-nav-link>
                     <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
-                        {{ __('Reports') }}
+                        {{ __('messages.msg_reports') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -72,7 +72,15 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('messages.msg_profile') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('lang.switch', 'en')">
+                            {{ __('messages.msg_english') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('lang.switch', 'vi')">
+                            {{ __('messages.msg_vietnamese') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -82,7 +90,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.msg_log_out') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -105,25 +113,25 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.msg_dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
-                {{ __('Clients') }}
+                {{ __('messages.msg_clients') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                {{ __('Products') }}
+                {{ __('messages.msg_products') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
-                {{ __('Invoices') }}
+                {{ __('messages.msg_invoices') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.*')">
-                {{ __('Tickets') }}
+                {{ __('messages.msg_tickets') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
-                {{ __('Orders') }}
+                {{ __('messages.msg_orders') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
-                {{ __('Reports') }}
+                {{ __('messages.msg_reports') }}
             </x-responsive-nav-link>
         </div>
 
@@ -154,7 +162,15 @@
                 </div>
 
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('messages.msg_profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('lang.switch', 'en')">
+                    {{ __('messages.msg_english') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('lang.switch', 'vi')">
+                    {{ __('messages.msg_vietnamese') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -164,7 +180,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('messages.msg_log_out') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

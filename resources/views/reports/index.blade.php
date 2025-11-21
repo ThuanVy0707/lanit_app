@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-indigo-800 dark:text-gray-200 leading-tight">
-                {{ __('Reports & Analytics') }}
+                {{ __('messages.msg_reports_analytics') }}
             </h2>
             <form method="GET" action="{{ route('reports.index') }}" class="flex items-center space-x-2">
-                <label for="month" class="text-sm text-gray-700 dark:text-gray-300">Month:</label>
+                <label for="month" class="text-sm text-gray-700 dark:text-gray-300">{{ __('messages.msg_month_label') }}</label>
                 <input type="month" name="month" id="month" value="{{ $currentMonth }}"
                     class="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 <button type="submit" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-md hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Filter
+                    {{ __('messages.msg_filter') }}
                 </button>
             </form>
         </div>
@@ -23,10 +23,10 @@
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Clients</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_total_clients') }}</p>
                             <p class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['total_clients'] }}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                                <span class="text-green-600 dark:text-green-400 font-semibold">+{{ $stats['new_clients_this_month'] }}</span> this month
+                                <span class="text-green-600 dark:text-green-400 font-semibold">+{{ $stats['new_clients_this_month'] }}</span> {{ __('messages.msg_this_month') }}
                             </p>
                         </div>
                         <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
@@ -40,10 +40,10 @@
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Clients</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_active_clients') }}</p>
                             <p class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['active_clients'] }}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                                {{ number_format(($stats['active_clients'] / max($stats['total_clients'], 1)) * 100, 1) }}% of total
+                                {{ number_format(($stats['active_clients'] / max($stats['total_clients'], 1)) * 100, 1) }}{{ __('messages.msg_of_total') }}
                             </p>
                         </div>
                         <div class="p-3 bg-green-100 dark:bg-green-900 rounded-full">
@@ -57,10 +57,10 @@
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Products</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_total_products') }}</p>
                             <p class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['total_products'] }}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                                <span class="text-green-600 dark:text-green-400 font-semibold">+{{ $stats['new_products_this_month'] }}</span> this month
+                                <span class="text-green-600 dark:text-green-400 font-semibold">+{{ $stats['new_products_this_month'] }}</span> {{ __('messages.msg_this_month') }}
                             </p>
                         </div>
                         <div class="p-3 bg-purple-100 dark:bg-purple-900 rounded-full">
@@ -74,10 +74,10 @@
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Products</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_active_products') }}</p>
                             <p class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['active_products'] }}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                                {{ number_format(($stats['active_products'] / max($stats['total_products'], 1)) * 100, 1) }}% of total
+                                {{ number_format(($stats['active_products'] / max($stats['total_products'], 1)) * 100, 1) }}{{ __('messages.msg_of_total') }}
                             </p>
                         </div>
                         <div class="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-full">
@@ -92,19 +92,19 @@
             <!-- Revenue Statistics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Revenue</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_total_revenue') }}</p>
                     <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ formatCurrencyVND($revenueStats['total_revenue']) }}</p>
                 </div>
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Invoices</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_total_invoices') }}</p>
                     <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $revenueStats['total_invoices'] }}</p>
                 </div>
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Paid Invoices</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_paid_invoices') }}</p>
                     <p class="text-2xl font-bold text-green-600 dark:text-green-400">{{ $revenueStats['paid_invoices'] }}</p>
                 </div>
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Unpaid Invoices</p>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('messages.msg_unpaid_invoices') }}</p>
                     <p class="text-2xl font-bold text-red-600 dark:text-red-400">{{ $revenueStats['unpaid_invoices'] }}</p>
                 </div>
             </div>
@@ -113,7 +113,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Product Status Distribution -->
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Product Status Distribution</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_product_status_distribution') }}</h3>
                     <div class="space-y-3">
                         @foreach($productStatusStats as $status => $count)
                             <div>
@@ -131,7 +131,7 @@
 
                 <!-- Product Type Distribution -->
                 <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Product Type Distribution</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_product_type_distribution') }}</h3>
                     <div class="space-y-3">
                         @foreach($productTypeStats as $type => $count)
                             <div>
@@ -150,15 +150,15 @@
 
             <!-- Monthly Trend -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 p-6">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">6-Month Trend</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_six_month_trend') }}</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Month</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">New Clients</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">New Products</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Active Products</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_month') }}</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_new_clients') }}</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_new_products') }}</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_active_products') }}</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -178,16 +178,16 @@
             <!-- New Clients This Month -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">New Clients This Month</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_new_clients_this_month') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Company</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Created</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_name') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_email') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_company') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_status') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_created') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -212,7 +212,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No new clients this month</td>
+                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">{{ __('messages.msg_no_new_clients_this_month') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -224,17 +224,17 @@
             <!-- New Products/Services This Month -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">New Products/Services This Month</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_new_products_services_this_month') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Product</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Client</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Type</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Amount</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Created</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_product') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_client') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_type') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_amount') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_status') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_created') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -260,7 +260,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No new products this month</td>
+                                        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">{{ __('messages.msg_no_new_products_this_month') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -272,16 +272,16 @@
             <!-- Services Due for Renewal This Month -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Services Due for Renewal This Month</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_services_due_for_renewal_this_month') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Product</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Client</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Billing Cycle</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Amount</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Next Due Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_product') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_client') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_billing_cycle') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_amount') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_next_due_date') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -301,7 +301,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No renewals due this month</td>
+                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">{{ __('messages.msg_no_renewals_due_this_month') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -313,16 +313,16 @@
             <!-- Cancelled/Terminated Services This Month -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Cancelled/Terminated Services This Month</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_cancelled_terminated_services_this_month') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Product</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Client</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Type</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Last Updated</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_product') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_client') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_type') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_status') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">{{ __('messages.msg_last_updated') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -344,7 +344,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No cancelled services this month</td>
+                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">{{ __('messages.msg_no_cancelled_services_this_month') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>

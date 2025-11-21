@@ -8,10 +8,19 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'vi'])) {
+        Session::put('locale', $locale);
+    }
+
+    return redirect()->back();
+})->name('lang.switch');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

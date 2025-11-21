@@ -26,7 +26,7 @@
                             <!-- Search -->
                             <div>
                                 <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Search</label>
-                                <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Order #, client..."
+                                <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="{{ __('messages.msg_search_placeholder') }}"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             </div>
 
@@ -50,11 +50,11 @@
                                 <select name="status" id="status"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                     <option value="">All Statuses</option>
-                                    <option value="Pending" {{ request('status') === 'Pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="Active" {{ request('status') === 'Active' ? 'selected' : '' }}>Active</option>
-                                    <option value="Cancelled" {{ request('status') === 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
-                                    <option value="Fraud" {{ request('status') === 'Fraud' ? 'selected' : '' }}>Fraud</option>
-                                    <option value="Completed" {{ request('status') === 'Completed' ? 'selected' : '' }}>Completed</option>
+                                    <option value="Pending" {{ request('status') === 'Pending' ? 'selected' : '' }}>{{ __('messages.msg_pending') }}</option>
+                                    <option value="Active" {{ request('status') === 'Active' ? 'selected' : '' }}>{{ __('messages.msg_active') }}</option>
+                                    <option value="Cancelled" {{ request('status') === 'Cancelled' ? 'selected' : '' }}>{{ __('messages.msg_cancelled') }}</option>
+                                    <option value="Fraud" {{ request('status') === 'Fraud' ? 'selected' : '' }}>{{ __('messages.msg_fraud') }}</option>
+                                    <option value="Completed" {{ request('status') === 'Completed' ? 'selected' : '' }}>{{ __('messages.msg_completed') }}</option>
                                 </select>
                             </div>
 
@@ -64,10 +64,10 @@
                                 <select name="payment_status" id="payment_status"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                     <option value="">All</option>
-                                    <option value="Pending" {{ request('payment_status') === 'Pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="Paid" {{ request('payment_status') === 'Paid' ? 'selected' : '' }}>Paid</option>
-                                    <option value="Cancelled" {{ request('payment_status') === 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
-                                    <option value="Refunded" {{ request('payment_status') === 'Refunded' ? 'selected' : '' }}>Refunded</option>
+                                    <option value="Pending" {{ request('payment_status') === 'Pending' ? 'selected' : '' }}>{{ __('messages.msg_pending') }}</option>
+                                    <option value="Paid" {{ request('payment_status') === 'Paid' ? 'selected' : '' }}>{{ __('messages.msg_paid') }}</option>
+                                    <option value="Cancelled" {{ request('payment_status') === 'Cancelled' ? 'selected' : '' }}>{{ __('messages.msg_cancelled') }}</option>
+                                    <option value="Refunded" {{ request('payment_status') === 'Refunded' ? 'selected' : '' }}>{{ __('messages.msg_refunded') }}</option>
                                 </select>
                             </div>
 
@@ -88,28 +88,28 @@
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Order #
+                                        {{ __('messages.msg_order_hash') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Client
+                                        {{ __('messages.msg_client') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Amount
+                                        {{ __('messages.msg_amount') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Payment
+                                        {{ __('messages.msg_payment') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Status
+                                        {{ __('messages.msg_status') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Items
+                                        {{ __('messages.msg_items') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Date
+                                        {{ __('messages.msg_date') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Actions
+                                        {{ __('messages.msg_actions') }}
                                     </th>
                                 </tr>
                             </thead>
@@ -158,19 +158,19 @@
                                             {{ $order->created_at->format('M d, Y') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('orders.show', $order) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3">View</a>
-                                            <a href="{{ route('orders.edit', $order) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-3">Edit</a>
-                                            <form action="{{ route('orders.destroy', $order) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                            <a href="{{ route('orders.show', $order) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3">{{ __('messages.msg_view') }}</a>
+                                            <a href="{{ route('orders.edit', $order) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-3">{{ __('messages.msg_edit') }}</a>
+                                            <form action="{{ route('orders.destroy', $order) }}" method="POST" class="inline" onsubmit="return confirm('{{ __('messages.msg_confirm_delete_order') }}');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">Delete</button>
+                                                <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">{{ __('messages.msg_delete') }}</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-                                            No orders found.
+                                            {{ __('messages.msg_no_orders_found') }}
                                         </td>
                                     </tr>
                                 @endforelse

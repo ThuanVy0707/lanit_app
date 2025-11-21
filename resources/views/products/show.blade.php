@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-indigo-800 dark:text-gray-200 leading-tight">
-                {{ __('Product Details') }} - {{ $product->name }}
+                {{ __('messages.msg_product_details') }} - {{ $product->name }}
             </h2>
             <div class="flex space-x-2">
                 <a href="{{ route('products.edit', $product) }}" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    {{ __('Edit') }}
+                    {{ __('messages.msg_edit') }}
                 </a>
                 <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    {{ __('Back') }}
+                    {{ __('messages.msg_back') }}
                 </a>
             </div>
         </div>
@@ -26,14 +26,14 @@
             <!-- Product Information -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50 mb-6">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Product Information</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_product_information') }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Product Name</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_product_name') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $product->name }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Client</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_client') }}</label>
                             <p class="mt-1 text-sm">
                                 <a href="{{ route('clients.show', $product->client) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
                                     {{ $product->client->fullname }}
@@ -41,11 +41,11 @@
                             </p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_type') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 capitalize">{{ $product->type }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_status') }}</label>
                             <p class="mt-1">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                     @if($product->status === 'Active') bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
@@ -58,28 +58,28 @@
                             </p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Billing Cycle</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_billing_cycle') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 capitalize">{{ $product->billing_cycle }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Amount</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_amount') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100 font-medium">{{ formatCurrencyVND($product->amount) }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Next Due Date</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_next_due_date') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">
                                 {{ $product->next_due_date ? $product->next_due_date->format('M d, Y') : '-' }}
                             </p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Created</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_created') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $product->created_at->format('M d, Y') }}</p>
                         </div>
                     </div>
 
                     @if($product->description)
                         <div class="mt-6">
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('messages.msg_description') }}</label>
                             <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
                                 <p class="text-sm text-gray-900 dark:text-gray-100 whitespace-pre-line">{{ $product->description }}</p>
                             </div>
@@ -91,22 +91,22 @@
             <!-- Client Summary -->
             <div class="bg-white/80 backdrop-blur-sm dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-xl border border-indigo-100/50">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Client Summary</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ __('messages.msg_client_summary') }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Company</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_company') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $product->client->companyname ?? '-' }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_email') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $product->client->email }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_phone') }}</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $product->client->phonenumber ?? '-' }}</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Client Status</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('messages.msg_client_status') }}</label>
                             <p class="mt-1">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                     @if($product->client->status === 'Active') bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
