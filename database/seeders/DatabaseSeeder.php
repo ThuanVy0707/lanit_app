@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed roles and permissions first
+        $this->call(RolesAndPermissionsSeeder::class);
+
         // Create admin user or get existing one
         $adminUser = User::firstOrCreate(
             ['email' => 'test@example.com'],
@@ -23,6 +26,12 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password'),
             ]
         );
+
+        // Assign admin role to the test user
+        $adminRole = \App\Models\Role::where('name', 'admin')->first();
+        if ($adminRole && ! $adminUser->hasRole('admin')) {
+            $adminUser->assignRole($adminRole);
+        }
 
         // Create clients with related data
         \App\Models\Client::factory(10)->create([
