@@ -18,6 +18,13 @@ class ClientController extends Controller
     {
         $query = Client::with(['owner']);
 
+        // Filter clients based on user permissions
+        if (! $request->user()->hasRole('admin')) {
+            $query->whereHas('users', function ($q) use ($request) {
+                $q->where('user_id', $request->user()->id);
+            });
+        }
+
         // Search filter
         if ($request->filled('search')) {
             $search = $request->search;

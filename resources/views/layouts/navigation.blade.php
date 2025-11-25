@@ -18,6 +18,11 @@
             <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" class="block">
                 {{ __('messages.msg_users') }}
             </x-nav-link>
+            @can('roles.index')
+                <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.*')" class="block">
+                    {{ __('messages.msg_roles') }}
+                </x-nav-link>
+            @endcan
             <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')" class="block">
                 {{ __('messages.msg_products') }}
             </x-nav-link>

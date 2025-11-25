@@ -81,7 +81,13 @@ class RolesAndPermissionsSeeder extends Seeder
             ['name' => 'profile.destroy', 'description' => 'Delete profile'],
 
             // Roles
-            ['name' => 'manage_roles', 'description' => 'Manage roles and permissions'],
+            ['name' => 'roles.index', 'description' => 'View roles'],
+            ['name' => 'roles.create', 'description' => 'Create roles'],
+            ['name' => 'roles.store', 'description' => 'Store roles'],
+            ['name' => 'roles.show', 'description' => 'Show roles'],
+            ['name' => 'roles.edit', 'description' => 'Edit roles'],
+            ['name' => 'roles.update', 'description' => 'Update roles'],
+            ['name' => 'roles.destroy', 'description' => 'Delete roles'],
         ];
 
         foreach ($permissions as $permission) {

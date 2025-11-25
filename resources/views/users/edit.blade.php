@@ -94,6 +94,31 @@
                             @enderror
                         </div>
 
+                        <!-- Assigned Clients -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                {{ __('messages.msg_assigned_clients') }}
+                            </label>
+                            <div class="space-y-2 max-h-48 overflow-y-auto border border-gray-300 dark:border-gray-700 rounded-md p-3">
+                                @foreach($clients as $client)
+                                    <label class="inline-flex items-center w-full">
+                                        <input type="checkbox" name="clients[]" value="{{ $client->id }}"
+                                               {{ $user->assignedClients->contains($client->id) ? 'checked' : '' }}
+                                               class="rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
+                                        <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                                            {{ $client->fullname }} ({{ $client->email }})
+                                            @if($client->companyname)
+                                                - {{ $client->companyname }}
+                                            @endif
+                                        </span>
+                                    </label>
+                                @endforeach
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                {{ __('messages.msg_assigned_clients_help') }}
+                            </p>
+                        </div>
+
                         <!-- Submit Button -->
                         <div class="flex justify-end space-x-2">
                             <a href="{{ route('users.show', $user) }}" class="inline-flex items-center px-4 py-2 bg-gray-300 dark:bg-gray-700 border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:bg-gray-400 dark:hover:bg-gray-600 focus:bg-gray-400 dark:focus:bg-gray-600 active:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">

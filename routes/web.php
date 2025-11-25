@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,9 @@ Route::middleware(['auth', 'permission'])->group(function () {
 
     // Report routes
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+
+    // Role routes (only for admins)
+    Route::resource('roles', RoleController::class)->middleware('role:admin');
 });
 
 require __DIR__.'/auth.php';

@@ -19,6 +19,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register dynamic gates for permissions
+        // Only load if permissions table exists
+        if (\Illuminate\Support\Facades\Schema::hasTable('permissions')) {
+            $permissions = \App\Models\Permission::pluck('name')->toArray();
+
+            foreach ($permissions as $permission) {
+                \Illuminate\Support\Facades\Gate::define($permission, function ($user) use ($permission) {
+                    return $user->hasPermission($permission);
+                });
+            }
+        }
     }
 }

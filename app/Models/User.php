@@ -56,6 +56,14 @@ class User extends Authenticatable
     }
 
     /**
+     * The clients that are assigned to the user.
+     */
+    public function assignedClients(): BelongsToMany
+    {
+        return $this->belongsToMany(Client::class, 'client_users');
+    }
+
+    /**
      * Check if user has a specific role.
      */
     public function hasRole(string $role): bool

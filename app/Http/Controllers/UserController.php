@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Client;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -80,8 +81,9 @@ class UserController extends Controller
     public function edit(User $user): View
     {
         $roles = Role::all();
+        $clients = Client::all();
 
-        return view('users.edit', compact('user', 'roles'));
+        return view('users.edit', compact('user', 'roles', 'clients'));
     }
 
     /**
@@ -103,6 +105,19 @@ class UserController extends Controller
         // Sync roles if provided
         if ($request->has('roles')) {
             $user->syncRoles($request->roles);
+        }
+
+        // Sync assigned clients if provided
+        if ($request->has('clients')) {
+            $clientsData = [];
+            foreach ($request->clients as $clientId) {
+                $clientsData[$clientId] = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'is_owner' => false,
+                ];
+            }
+            $user->assignedClients()->sync($clientsData);
         }
 
         return redirect()->route('users.show', $user)
