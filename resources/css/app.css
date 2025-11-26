@@ -1,0 +1,25 @@
+@import 'flatpickr/dist/flatpickr.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-gradient-to-br from-blue-50 via-white to-sky-50 min-h-screen;
+    }
+}
+
+@layer components {
+    .card-light {
+        @apply bg-white shadow-sm hover:shadow-md transition-shadow duration-200 rounded-lg;
+    }
+
+    .btn-primary-light {
+        @apply bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow transition-all duration-200;
+    }
+
+    .input-light {
+        @apply bg-white border-gray-200 focus:border-primary-400 focus:ring-primary-200;
+    }
+}
