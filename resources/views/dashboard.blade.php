@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-indigo-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+        <h2 class="font-semibold text-xl dark:text-gray-200 leading-tight">
+            {{ __('messages.msg_dashboard') }}
         </h2>
     </x-slot>
 

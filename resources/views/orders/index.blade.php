@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Orders') }}
+                {{ __('messages.msg_orders') }}
             </h2>
-            <a href="{{ route('orders.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                {{ __('Create Order') }}
+            <a href="{{ route('orders.create') }}" class="mx-2 inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:from-indigo-700 hover:to-purple-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                {{ __('messages.msg_create_order') }}
             </a>
         </div>
     </x-slot>
@@ -25,17 +25,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                             <!-- Search -->
                             <div>
-                                <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Search</label>
+                                <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ __('messages.msg_search') }}</label>
                                 <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="{{ __('messages.msg_search_placeholder') }}"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             </div>
 
                             <!-- Client Filter -->
                             <div>
-                                <label for="client_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Client</label>
+                                <label for="client_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ __('messages.msg_client') }}</label>
                                 <select name="client_id" id="client_id"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                    <option value="">All Clients</option>
+                                    <option value="">{{ __('messages.msg_all_clients') }}</option>
                                     @foreach($clients as $client)
                                         <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
                                             {{ $client->fullname }}
@@ -46,10 +46,10 @@
 
                             <!-- Status Filter -->
                             <div>
-                                <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                                <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ __('messages.msg_status') }}</label>
                                 <select name="status" id="status"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                    <option value="">All Statuses</option>
+                                    <option value="">{{ __('messages.msg_all_statuses') }}</option>
                                     <option value="Pending" {{ request('status') === 'Pending' ? 'selected' : '' }}>{{ __('messages.msg_pending') }}</option>
                                     <option value="Active" {{ request('status') === 'Active' ? 'selected' : '' }}>{{ __('messages.msg_active') }}</option>
                                     <option value="Cancelled" {{ request('status') === 'Cancelled' ? 'selected' : '' }}>{{ __('messages.msg_cancelled') }}</option>
@@ -60,10 +60,10 @@
 
                             <!-- Payment Status Filter -->
                             <div>
-                                <label for="payment_status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Payment</label>
+                                <label for="payment_status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ __('messages.msg_payment') }}</label>
                                 <select name="payment_status" id="payment_status"
                                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                    <option value="">All</option>
+                                    <option value="">{{ __('messages.msg_all') }}</option>
                                     <option value="Pending" {{ request('payment_status') === 'Pending' ? 'selected' : '' }}>{{ __('messages.msg_pending') }}</option>
                                     <option value="Paid" {{ request('payment_status') === 'Paid' ? 'selected' : '' }}>{{ __('messages.msg_paid') }}</option>
                                     <option value="Cancelled" {{ request('payment_status') === 'Cancelled' ? 'selected' : '' }}>{{ __('messages.msg_cancelled') }}</option>
@@ -73,11 +73,11 @@
 
                             <!-- Filter Buttons -->
                             <div class="flex items-end space-x-2">
-                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                    Filter
+                                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-md hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                    {{ __('messages.msg_filter') }}
                                 </button>
                                 <a href="{{ route('orders.index') }}" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-400 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                    Reset
+                                    {{ __('messages.msg_reset') }}
                                 </a>
                             </div>
                         </div>

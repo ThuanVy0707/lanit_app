@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-indigo-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl dark:text-gray-200 leading-tight">
                 {{ __('messages.msg_reports_analytics') }}
             </h2>
             <form method="GET" action="{{ route('reports.index') }}" class="flex items-center space-x-2">

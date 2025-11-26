@@ -306,6 +306,7 @@ return [
     'msg_confirm_merge_ticket' => 'Are you sure you want to merge this ticket?',
     'msg_merged_tickets' => 'Merged Tickets',
     'msg_ticket_merged_into' => 'This ticket has been merged into',
+    'msg_amount_required' => 'Amount',
 
     'msg_users' => 'Users',
     'msg_add_new_user' => 'Add New User',

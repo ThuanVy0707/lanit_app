@@ -306,6 +306,7 @@ return [
     'msg_confirm_merge_ticket' => 'Bạn có chắc chắn muốn hợp nhất vé này?',
     'msg_merged_tickets' => 'Vé đã hợp nhất',
     'msg_ticket_merged_into' => 'Vé này đã được hợp nhất vào',
+    'msg_amount_required' => 'Số tiền',
 
     'msg_users' => 'Người dùng',
     'msg_add_new_user' => 'Thêm Người Dùng Mới',
